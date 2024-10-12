@@ -51,7 +51,7 @@ export default function CardComponent({ product }: CardProps) {
                     <Modal
                         isOpen={isOpen}
                         onOpenChange={onOpenChange}
-                        placement="top-center"
+                        placement="center"
                     >
                         <ModalContent>
                             {(onClose) => (
@@ -70,7 +70,7 @@ export default function CardComponent({ product }: CardProps) {
                                             EXIT
                                         </button>
                                         <button onClick={() => update(product._id,updatedproduct) }>
-                                            submit
+                                            SUBMIT
                                         </button>
                                     </ModalFooter>
                                 </>
