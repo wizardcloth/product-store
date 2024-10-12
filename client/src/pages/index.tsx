@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import { productstore } from "@/store/product";
 import { useEffect } from "react";
 import Card from "@/components/cards";
+import "../styles/home.css"
 export default function IndexPage() {
   const { fetchproducts, products } = productstore();
   useEffect(() => {
@@ -12,13 +13,15 @@ export default function IndexPage() {
   // console.log(products);
   return (
     <DefaultLayout>
-      <h1 style={{ display: "flex", justifyContent: "center", fontSize: "150%",paddingBottom:"15px" }}>CURRENT PRODUCTS</h1>
-      <div style={{display:"grid",gridTemplateColumns:"auto auto auto",gap:"20px"}}>
-      {
-        products.map((product:any)=>(
-          <Card key={product._id} product={product}/>
-        ))
-      }
+      <div>
+        <h1 id="headmain" style={{ display: "flex", justifyContent: "center", fontSize: "150%", paddingBottom: "15px" }}>CURRENT PRODUCTS</h1>
+      </div>
+      <div className="containergrid"  >
+        {
+          products.map((product: any) => (
+            <Card key={product._id} product={product} />
+          ))
+        }
       </div>
       {products.length == 0 && (
         <div>
