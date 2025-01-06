@@ -21,7 +21,7 @@ export default function IndexPage() {
           products.map((product: any) => (
             <Card key={product._id} product={product} />
           ))
-        }
+        } 
       </div>
       {products.length == 0 && (
         <div>
