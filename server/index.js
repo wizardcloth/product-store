@@ -12,10 +12,10 @@ const app = express();
 app.use(express.json());
 app.use(cors({
     origin: 'https://product-store-j9hi.vercel.app',
-    methods: ['GET', 'POST', 'OPTIONS','DeLETE','PUT'], 
-    allowedHeaders: ['Content-Type', 'Authorization'], 
-  }));
-  
+    methods: ['GET', 'POST', 'OPTIONS', 'DELETE', 'PUT'],
+    allowedHeaders: ['Content-Type', 'Authorization'],
+}));
+
 
 app.use("/api/products", router);
 
@@ -34,6 +34,6 @@ app.get("/", (req, res) => res.send("Serverless Express API"));
 // Export the handler as a Vercel function
 export default async function handler(req, res) {
     await connectToDatabase();
-    app(req, res); 
+    app(req, res);
 }
 
