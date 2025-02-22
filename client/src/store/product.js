@@ -2,6 +2,7 @@ import { create } from "zustand";
 
 export const productstore = create((set) => ({
     products: [],
+    isloading: false,
     setProducts: (products) => set({ products }),
     createproduct: async (newproduct) => {
         if (!newproduct.name || !newproduct.price || !newproduct.image) {
@@ -9,6 +10,7 @@ export const productstore = create((set) => ({
         }
 
         try {
+            set({ isloading: true });
             const res = await fetch("/api/products", {
                 method: "POST",
                 headers: {
@@ -32,15 +34,26 @@ export const productstore = create((set) => ({
         } catch (error) {
             console.error("Error:", error);
             return { success: false, message: "Failed to create product" };
+        }finally{
+            set({ isloading: false });
         }
 
     },
     fetchproducts: async () => {
-        const res = await fetch("/api/products");
-        // console.log(res);
-        const data = await res.json();
-        // console.log(data); 
-        set({ products: data.message });
+        set({ isloading: true });
+        try {
+            const res = await fetch("/api/products");
+            // console.log(res);
+            const data = await res.json();
+            // console.log(data); 
+            set({ products: data.message });
+            
+        } catch (error) {
+            console.error("Error:", error);
+        }
+        finally{
+            set({ isloading: false });
+        }
     },
     deleteproduct: async (id) => {
         const res = await fetch(`/api/products/${id}`, {
