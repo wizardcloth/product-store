@@ -11,7 +11,7 @@ export const productstore = create((set) => ({
 
         try {
             set({ isloading: true });
-            const res = await fetch("/api/products", {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/products`, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -42,7 +42,7 @@ export const productstore = create((set) => ({
     fetchproducts: async () => {
         set({ isloading: true });
         try {
-            const res = await fetch("/api/products");
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/products`);
             // console.log(res);
             const data = await res.json();
             // console.log(data); 
@@ -56,7 +56,7 @@ export const productstore = create((set) => ({
         }
     },
     deleteproduct: async (id) => {
-        const res = await fetch(`/api/products/${id}`, {
+        const res = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/products/${id}`, {
             method: "DELETE",
         });
         const data = await res.json();
@@ -67,7 +67,7 @@ export const productstore = create((set) => ({
     },
     updateproduct : async (id,updatedproduct) => {
         try {
-            const res = await fetch(`/api/products/${id}`, {
+            const res = await fetch(`${import.meta.env.VITE_REACT_APP_BASE_URL}/api/products/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"
