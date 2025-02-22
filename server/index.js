@@ -10,7 +10,12 @@ const app = express();
 
 // Middleware setup
 app.use(express.json());
-app.use(cors());
+app.use(cors({
+    origin: 'https://product-store-j9hi.vercel.app',
+    methods: ['GET', 'POST', 'OPTIONS','DeLETE','PUT'], 
+    allowedHeaders: ['Content-Type', 'Authorization'], 
+  }));
+  
 
 app.use("/api/products", router);
 
